@@ -2774,9 +2774,7 @@ namespace Meebey.SmartIrc4net
                     voice = false;
 
                     nickname = user;
-
-                    char mode;
-
+                    
                     foreach (var kvp in _ServerProperties.ChannelPrivilegeModesPrefixes) {
                         if (nickname[0] == kvp.Value) {
                             nickname = nickname.Substring(1);

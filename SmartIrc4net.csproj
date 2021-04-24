@@ -1,95 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{91D3003B-7E65-4EAF-8EE1-DA43832E7A9C}</ProjectGuid>
+    <TargetFramework>net5.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>SmartIrc4net</RootNamespace>
     <AssemblyName>Meebey.SmartIrc4net</AssemblyName>
+    <LangVersion>9</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>bin\debug</OutputPath>
     <DefineConstants>TRACE;DEBUG;LOG4NET;NET_2_0</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <ConsolePause>false</ConsolePause>
     <RunWithWarnings>false</RunWithWarnings>
     <Execution>
-      <Execution clr-version="Net_2_0" />
     </Execution>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>bin\release</OutputPath>
     <DefineConstants>NET_2_0</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <RunWithWarnings>false</RunWithWarnings>
     <ConsolePause>false</ConsolePause>
     <Execution>
-      <Execution clr-version="Net_2_0" />
     </Execution>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="src\AssemblyInfo.cs" />
-    <Compile Include="src\Logger.cs" />
-    <Compile Include="src\Consts.cs" />
-    <Compile Include="src\EventArgs.cs" />
-    <Compile Include="src\Exceptions.cs" />
-    <Compile Include="src\IrcConnection\IrcConnection.cs" />
-    <Compile Include="src\IrcConnection\Delegates.cs" />
-    <Compile Include="src\IrcConnection\EventArgs.cs" />
-    <Compile Include="src\IrcCommands\IrcCommands.cs" />
-    <Compile Include="src\IrcCommands\Rfc2812.cs" />
-    <Compile Include="src\IrcClient\IrcClient.cs" />
-    <Compile Include="src\IrcClient\IrcMessageData.cs" />
-    <Compile Include="src\IrcClient\Delegates.cs" />
-    <Compile Include="src\IrcClient\EventArgs.cs" />
-    <Compile Include="src\IrcClient\IrcUser.cs" />
-    <Compile Include="src\IrcClient\Channel.cs" />
-    <Compile Include="src\IrcClient\NonRfcChannel.cs" />
-    <Compile Include="src\IrcClient\ChannelUser.cs" />
-    <Compile Include="src\IrcClient\NonRfcChannelUser.cs" />
-    <Compile Include="src\IrcConnection\IrcProperties.cs" />
-    <Compile Include="src\IrcClient\ChannelInfo.cs" />
-    <Compile Include="src\IrcClient\WhoInfo.cs" />
-    <Compile Include="src\IrcClient\BanInfo.cs" />
-    <Compile Include="src\IrcFeatures\DccChat.cs" />
-    <Compile Include="src\IrcFeatures\DccConnection.cs" />
-    <Compile Include="src\IrcFeatures\DccSend.cs" />
-    <Compile Include="src\IrcFeatures\Delegates.cs" />
-    <Compile Include="src\IrcFeatures\EventArgs.cs" />
-    <Compile Include="src\IrcFeatures\IrcConstants.cs" />
-    <Compile Include="src\IrcFeatures\IrcFeatures.cs" />
-    <Compile Include="src\IrcConnection\ProxyType.cs" />
-    <Compile Include="src\IrcConnection\PrimaryOrFallbackEncoding.cs" />
-    <Compile Include="src\IrcClient\ServerProperties.cs" />
-    <Compile Include="src\IrcClient\ChannelModeChangeInfo.cs" />
+    <ProjectReference Include="src\starksoftproxy\StarkSoftProxy.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>$(SolutionDir)\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="src\starksoftproxy\StarkSoftProxy.csproj">
-      <Project>{3F8CF2C1-EA37-444F-8693-A3A00B1131D2}</Project>
-      <Name>StarkSoftProxy</Name>
-    </ProjectReference>
+    <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="5.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="src\AssemblyInfo.cs.in" />
+    <Compile Remove="examples\benchmark\AssemblyInfo.cs" />
+    <Compile Remove="examples\benchmark\benchmark.cs" />
+    <Compile Remove="examples\benchmark\obj\Debug\.NETFramework,Version=v4.0.AssemblyAttributes.cs" />
+    <Compile Remove="examples\benchmark\obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Remove="examples\stresstest\AssemblyInfo.cs" />
+    <Compile Remove="examples\stresstest\obj\Debug\.NETFramework,Version=v4.0.AssemblyAttributes.cs" />
+    <Compile Remove="examples\stresstest\obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Remove="examples\stresstest\stresstest.cs" />
+    <Compile Remove="examples\test\AssemblyInfo.cs" />
+    <Compile Remove="examples\test\obj\Debug\.NETFramework,Version=v4.0.AssemblyAttributes.cs" />
+    <Compile Remove="examples\test\obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Remove="examples\test\Test.cs" />
+    <Compile Remove="src\starksoftproxy\EventArgs\CreateConnectionAsyncCompletedEventArgs.cs" />
+    <Compile Remove="src\starksoftproxy\Exceptions\ProxyException.cs" />
+    <Compile Remove="src\starksoftproxy\HttpProxyClient.cs" />
+    <Compile Remove="src\starksoftproxy\IProxyClient.cs" />
+    <Compile Remove="src\starksoftproxy\obj\Debug\.NETFramework,Version=v4.5.AssemblyAttributes.cs" />
+    <Compile Remove="src\starksoftproxy\obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Remove="src\starksoftproxy\ProxyClientFactory.cs" />
+    <Compile Remove="src\starksoftproxy\Socks4aProxyClient.cs" />
+    <Compile Remove="src\starksoftproxy\Socks4ProxyClient.cs" />
+    <Compile Remove="src\starksoftproxy\Socks5ProxyClient.cs" />
+    <Compile Remove="src\starksoftproxy\Utils.cs" />
+    <Compile Remove="tests\ChannelModeChangeInfoTests.cs" />
+    <Compile Remove="tests\IrcClientTests.cs" />
+    <Compile Remove="tests\obj\Debug\.NETFramework,Version=v4.0.AssemblyAttributes.cs" />
+    <Compile Remove="tests\obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Remove="tests\ServerPropertiesTests.cs" />
   </ItemGroup>
 </Project>
